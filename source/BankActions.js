@@ -1,6 +1,6 @@
 import AppDispatcher from './AppDispatcher';
-import bankConstants from './constants';
-let bankActions={
+import bankConstants from './constant';
+let BankActions={
     createAccount(amount){
         AppDispatcher.dispatch({
             type:bankConstants.CREATED_ACCOUNT,

@@ -1,14 +1,21 @@
 import {EventEmitter} from 'fbemitter';
 import AppDispatcher from './AppDispatcher';
-import bankConstants from './constants';
-let balance=0;
+import bankConstants from './constant';
+let balance = 0;
 let __emitter = new EventEmitter();
 
 
 class BankBalanceStore extends EventEmitter{
+constructor(){
+    super();
+    this.state={
+        balance :balance
+    }
+
+}
 
     getBalance(){
-        return balance;
+        return this.state.balance;
     }
     creatAccount(amount){
         balance=0;
@@ -38,8 +45,8 @@ class BankBalanceStore extends EventEmitter{
 
     }
 
-
 }
-const bankBalancestore =new BankBalanceStore();
-AppDispatcher.register(bankBalanceStore.handleAction.bind(bankBalanceStore));
+
+const bankBalancestore = new BankBalanceStore;
+BankBalanceStore.dispatchToken = AppDispatcher.register(bankBalancestore.handleActions(bankBalancestore));
 export default BankBalanceStore;
